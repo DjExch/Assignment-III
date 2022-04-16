@@ -42,6 +42,23 @@ public class FrequencyAnalysis {
 
     return sortedEntries;
 }
+    
+    public static String parseStr(String ruleStr,String mainStr){
+         Map<Character,Character> keyMap = new HashMap<>();
+         List<String> rules  = Arrays.asList(ruleStr.split(","));
+         StringBuilder sb = new StringBuilder();
+         rules.forEach((r) -> {
+             keyMap.put(r.charAt(0), r.charAt(2));
+        });
+         
+        for(Character c : mainStr.toCharArray()){
+            sb.append(keyMap.containsKey(c) ? keyMap.get(c): c);
+        }
+        return sb.toString();
+
+    }
+    
+    
     public static void main(String[] args) {
         // TODO code application logic here
       String str = null;
@@ -90,15 +107,8 @@ public class FrequencyAnalysis {
                 System.out.println("Please Enter Your New Rule");
                 Scanner sc1 = new Scanner(System.in);
                 String rule = sc1.nextLine();
-                String filteredRule = rule.replaceAll("[,:]", "");
-                System.out.println("Your New Rule is \n" +filteredRule);
-                System.out.println("The Cipher Text \n" +str);
-                //loop through each character of the filtered Rule
-                for(int i =0; i<filteredRule.length(); i++){
-                    //System.out.println(filteredRule.charAt(i));
-                    
-                }
-                //System.out.println("The Cipher Text \n" +str);
+               
+                System.out.println(parseStr(rule, str));
                 
           //A:b,B:k,C:f,D:l,E:m,F:n,G:o,H:p,I:h,J:q,K:r,L:s,M:a,N:c,O:t,P:i,Q:u,R:g,S:e,T:j,U:d,V:v,W:w,X:x,Y:y,Z:z
          }else{
